@@ -1,0 +1,271 @@
+.page {
+  min-height: 100vh;
+  background: #F9FAFB;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 24rpx 32rpx;
+  background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
+}
+
+.skill-icon-large {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.skill-icon-large.工具 {
+  background: linear-gradient(135deg, #3B82F6, #60A5FA);
+}
+
+.skill-icon-large.开发 {
+  background: linear-gradient(135deg, #10B981, #34D399);
+}
+
+.skill-icon-large.分析 {
+  background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+}
+
+.skill-icon-large.创意 {
+  background: linear-gradient(135deg, #EC4899, #F472B6);
+}
+
+.skill-icon-large image {
+  width: 50rpx;
+  height: 50rpx;
+  filter: brightness(0) invert(1);
+}
+
+.skill-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 16rpx;
+}
+
+.skill-status {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.status-text {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.content {
+  padding: 24rpx;
+}
+
+.section {
+  margin-bottom: 32rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16rpx;
+}
+
+.info-card, .desc-card, .config-card, .stats-card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 2rpx solid #F3F4F6;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 28rpx;
+  color: #6B7280;
+}
+
+.info-value {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #111827;
+}
+
+.category-tag {
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+  color: #FFFFFF;
+}
+
+.category-tag.工具 {
+  background: #3B82F6;
+}
+
+.category-tag.开发 {
+  background: #10B981;
+}
+
+.category-tag.分析 {
+  background: #8B5CF6;
+}
+
+.category-tag.创意 {
+  background: #EC4899;
+}
+
+.desc-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.desc-text {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #111827;
+  line-height: 1.6;
+}
+
+.desc-detail {
+  font-size: 26rpx;
+  color: #6B7280;
+  line-height: 1.5;
+}
+
+.config-item {
+  margin-bottom: 28rpx;
+}
+
+.config-item:last-child {
+  margin-bottom: 0;
+}
+
+.config-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 12rpx;
+}
+
+.config-value {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.config-slider {
+  flex: 1;
+}
+
+.value-text {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #F59E0B;
+  min-width: 80rpx;
+  text-align: right;
+}
+
+.picker-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F3F4F6;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #111827;
+}
+
+.arrow-icon {
+  width: 32rpx;
+  height: 32rpx;
+  opacity: 0.5;
+}
+
+.stats-card {
+  display: flex;
+  justify-content: space-around;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #F59E0B;
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #6B7280;
+}
+
+.actions {
+  margin-bottom: 32rpx;
+}
+
+.btn-save {
+  width: 100%;
+  background: linear-gradient(135deg, #F59E0B, #FBBF24);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.btn-save::after {
+  border: none;
+}
+
+.danger-zone {
+  padding-top: 24rpx;
+  border-top: 2rpx solid #E5E7EB;
+}
+
+.danger-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #EF4444;
+  margin-bottom: 16rpx;
+}
+
+.btn-uninstall {
+  width: 100%;
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  border: none;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.btn-uninstall::after {
+  border: none;
+}

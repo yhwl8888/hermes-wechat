@@ -1,0 +1,88 @@
+<view class="page">
+  <view class="header">
+    <view class="header-title">
+      <text class="title-text">技能管理</text>
+      <text class="subtitle-text">管理和配置AI技能</text>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="stats-row">
+      <view class="stat-card">
+        <view class="stat-icon enabled">
+          <image src="/assets/icons/check-circle.png" mode="aspectFit"></image>
+        </view>
+        <view class="stat-info">
+          <text class="stat-value">{{enabledCount}}</text>
+          <text class="stat-label">已启用</text>
+        </view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-icon total">
+          <image src="/assets/icons/list.png" mode="aspectFit"></image>
+        </view>
+        <view class="stat-info">
+          <text class="stat-value">{{totalCount}}</text>
+          <text class="stat-label">总技能数</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="search-bar">
+      <image class="search-icon" src="/assets/icons/search.png" mode="aspectFit"></image>
+      <input class="search-input" placeholder="搜索技能..." bindinput="onSearchInput" value="{{searchKeyword}}" />
+    </view>
+
+    <view class="category-tabs">
+      <view class="category-tab {{category === 'all' ? 'active' : ''}}" bindtap="onCategoryChange" data-category="all">
+        <text>全部</text>
+      </view>
+      <view class="category-tab {{category === '工具' ? 'active' : ''}}" bindtap="onCategoryChange" data-category="工具">
+        <text>工具</text>
+      </view>
+      <view class="category-tab {{category === '开发' ? 'active' : ''}}" bindtap="onCategoryChange" data-category="开发">
+        <text>开发</text>
+      </view>
+      <view class="category-tab {{category === '分析' ? 'active' : ''}}" bindtap="onCategoryChange" data-category="分析">
+        <text>分析</text>
+      </view>
+      <view class="category-tab {{category === '创意' ? 'active' : ''}}" bindtap="onCategoryChange" data-category="创意">
+        <text>创意</text>
+      </view>
+    </view>
+
+    <view class="skills-grid">
+      <block wx:for="{{filteredSkills}}" wx:key="id">
+        <view class="skill-card" bindtap="onSkillTap" data-id="{{item.id}}">
+          <view class="skill-header">
+            <view class="skill-icon {{item.category}}">
+              <image wx:if="{{item.category === '工具'}}" src="/assets/icons/tool.png" mode="aspectFit"></image>
+              <image wx:elif="{{item.category === '开发'}}" src="/assets/icons/code.png" mode="aspectFit"></image>
+              <image wx:elif="{{item.category === '分析'}}" src="/assets/icons/chart.png" mode="aspectFit"></image>
+              <image wx:elif="{{item.category === '创意'}}" src="/assets/icons/creative.png" mode="aspectFit"></image>
+              <image wx:else src="/assets/icons/skill.png" mode="aspectFit"></image>
+            </view>
+            <switch class="skill-switch" checked="{{item.isEnabled}}" bindchange="onSkillToggle" data-id="{{item.id}}" />
+          </view>
+          <view class="skill-body">
+            <text class="skill-name">{{item.name}}</text>
+            <text class="skill-desc">{{item.description}}</text>
+            <view class="skill-meta">
+              <text class="skill-version">v{{item.version}}</text>
+              <text class="skill-usage">使用 {{item.usageCount}} 次</text>
+            </view>
+          </view>
+          <view class="skill-category-tag {{item.category}}">
+            <text>{{item.category}}</text>
+          </view>
+        </view>
+      </block>
+
+      <view class="empty-state" wx:if="{{filteredSkills.length === 0}}">
+        <image class="empty-icon" src="/assets/icons/empty-skill.png" mode="aspectFit"></image>
+        <text class="empty-text">暂无技能</text>
+        <text class="empty-hint">技能市场即将上线</text>
+      </view>
+    </view>
+  </view>
+</view>

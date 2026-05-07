@@ -1,0 +1,116 @@
+<view class="chat-page">
+  <view class="chat-header">
+    <view class="header-left" bindtap="onBack">
+      <image class="back-icon" src="/assets/icons/back.png" mode="aspectFit"></image>
+    </view>
+    <view class="header-center">
+      <text class="chat-title">{{conversation.name}}</text>
+      <view class="chat-info">
+        <text class="model-label">{{conversation.model}}</text>
+        <text class="separator">•</text>
+        <text class="skills-count">{{conversation.skills.length}} 个技能</text>
+      </view>
+    </view>
+    <view class="header-right" bindtap="onOpenSettings">
+      <image class="settings-icon" src="/assets/icons/settings.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <scroll-view class="messages-container" scroll-y scroll-top="{{scrollTop}}" bindscrolltoupper="onScrollUpper">
+    <view class="messages-wrapper">
+      <block wx:for="{{messages}}" wx:key="id">
+        <view class="message-item {{item.role}}">
+          <view class="message-avatar" wx:if="{{item.role === 'assistant'}}">
+            <text class="avatar-text">H</text>
+          </view>
+          <view class="message-content">
+            <view class="message-bubble">
+              <text class="message-text">{{item.content}}</text>
+            </view>
+            <text class="message-time">{{item.timestamp}}</text>
+          </view>
+          <view class="message-avatar user-avatar" wx:if="{{item.role === 'user'}}">
+            <text class="avatar-text">U</text>
+          </view>
+        </view>
+      </block>
+
+      <view class="typing-indicator" wx:if="{{isTyping}}">
+        <view class="typing-dot"></view>
+        <view class="typing-dot"></view>
+        <view class="typing-dot"></view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="input-area">
+    <view class="input-container">
+      <textarea class="message-input" placeholder="输入消息..." placeholder-class="input-placeholder" bindinput="onInputChange" value="{{inputMessage}}" adjust-position="{{false}}" />
+      <view class="input-actions">
+        <view class="action-btn" bindtap="onToggleSkills">
+          <image class="action-icon" src="/assets/icons/skill.png" mode="aspectFit"></image>
+        </view>
+        <view class="action-btn send-btn {{inputMessage ? 'active' : ''}}" bindtap="onSendMessage">
+          <image class="action-icon send-icon" src="/assets/icons/send.png" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="skills-panel {{showSkillsPanel ? 'show' : ''}}" wx:if="{{showSkillsPanel}}">
+      <view class="skills-header">
+        <text class="skills-title">选择技能</text>
+        <view class="close-btn" bindtap="onToggleSkills">
+          <text>关闭</text>
+        </view>
+      </view>
+      <view class="skills-list">
+        <block wx:for="{{skills}}" wx:key="id">
+          <view class="skill-item {{item.isEnabled ? 'enabled' : ''}}" bindtap="onToggleSkill" data-id="{{item.id}}">
+            <view class="skill-checkbox">
+              <image wx:if="{{item.isEnabled}}" class="checkbox-icon" src="/assets/icons/check.png" mode="aspectFit"></image>
+            </view>
+            <view class="skill-info">
+              <text class="skill-name">{{item.name}}</text>
+              <text class="skill-desc">{{item.description}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view class="settings-panel {{showSettingsPanel ? 'show' : ''}}" wx:if="{{showSettingsPanel}}">
+    <view class="settings-mask" bindtap="onCloseSettings"></view>
+    <view class="settings-content">
+      <view class="settings-header">
+        <text class="settings-title">会话设置</text>
+        <view class="close-btn" bindtap="onCloseSettings">
+          <text>×</text>
+        </view>
+      </view>
+      <view class="settings-body">
+        <view class="setting-item">
+          <text class="setting-label">会话名称</text>
+          <input class="setting-input" value="{{conversation.name}}" bindinput="onNameChange" />
+        </view>
+        <view class="setting-item">
+          <text class="setting-label">选择模型</text>
+          <picker mode="selector" range="{{modelOptions}}" range-key="name" bindchange="onModelChange">
+            <view class="picker-value">
+              <text>{{selectedModelName}}</text>
+              <image class="arrow-icon" src="/assets/icons/arrow-right.png" mode="aspectFit"></image>
+            </view>
+          </picker>
+        </view>
+        <view class="setting-item">
+          <text class="setting-label">温度参数</text>
+          <slider class="temp-slider" min="0" max="100" value="{{temperature}}" bindchange="onTemperatureChange" />
+          <text class="temp-value">{{temperature / 100}}</text>
+        </view>
+      </view>
+      <view class="settings-footer">
+        <button class="btn-save" bindtap="onSaveSettings">保存设置</button>
+      </view>
+    </view>
+  </view>
+</view>
