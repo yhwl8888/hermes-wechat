@@ -1,0 +1,85 @@
+<view class="page">
+  <view class="header">
+    <view class="header-title">
+      <text class="title-text">Hermes Manager</text>
+      <text class="subtitle-text">智能助手管理平台</text>
+    </view>
+    <view class="search-bar">
+      <image class="search-icon" src="/assets/icons/search.png" mode="aspectFit"></image>
+      <input class="search-input" placeholder="搜索会话..." placeholder-class="search-placeholder" bindinput="onSearchInput" value="{{searchKeyword}}" />
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="section-header">
+      <text class="section-title">会话列表</text>
+      <text class="section-count">{{conversations.length}} 个会话</text>
+    </view>
+
+    <view class="conversation-list">
+      <block wx:for="{{filteredConversations}}" wx:key="id">
+        <view class="conversation-item {{item.isPinned ? 'pinned' : ''}}" bindtap="onConversationTap" data-id="{{item.id}}">
+          <view class="conversation-avatar">
+            <text class="avatar-text">{{item.name ? item.name.charAt(0).toUpperCase() : 'H'}}</text>
+          </view>
+          <view class="conversation-info">
+            <view class="conversation-header">
+              <text class="conversation-name">{{item.name}}</text>
+              <view class="conversation-meta">
+                <text class="conversation-time">{{item.updatedAt}}</text>
+                <view class="pin-badge" wx:if="{{item.isPinned}}">
+                  <text>置顶</text>
+                </view>
+              </view>
+            </view>
+            <text class="conversation-preview">{{item.lastMessage || '暂无消息'}}</text>
+            <view class="conversation-tags">
+              <text class="tag-item model-tag">{{item.model}}</text>
+              <text class="tag-item skill-tag" wx:if="{{item.skills && item.skills.length > 0}}">{{item.skills.length}} 个技能</text>
+            </view>
+          </view>
+          <view class="conversation-actions" catchtap="onMoreTap" data-id="{{item.id}}">
+            <image class="more-icon" src="/assets/icons/more.png" mode="aspectFit"></image>
+          </view>
+        </view>
+      </block>
+
+      <view class="empty-state" wx:if="{{filteredConversations.length === 0}}">
+        <image class="empty-icon" src="/assets/icons/empty-chat.png" mode="aspectFit"></image>
+        <text class="empty-text">暂无会话</text>
+        <text class="empty-hint">点击下方按钮创建新会话</text>
+        <button class="btn-create-empty" bindtap="onCreateConversation">创建会话</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="create-button" bindtap="onCreateConversation">
+    <image class="create-icon" src="/assets/icons/add.png" mode="aspectFit"></image>
+    <text class="create-text">新建会话</text>
+  </view>
+
+  <view class="action-sheet {{showActionSheet ? 'show' : ''}}" wx:if="{{showActionSheet}}">
+    <view class="action-mask" bindtap="onCloseActionSheet"></view>
+    <view class="action-content">
+      <view class="action-item" bindtap="onPinConversation">
+        <image class="action-icon" src="/assets/icons/pin.png" mode="aspectFit"></image>
+        <text>{{selectedConversation && selectedConversation.isPinned ? '取消置顶' : '置顶会话'}}</text>
+      </view>
+      <view class="action-item" bindtap="onRenameConversation">
+        <image class="action-icon" src="/assets/icons/edit.png" mode="aspectFit"></image>
+        <text>重命名</text>
+      </view>
+      <view class="action-item" bindtap="onExportConversation">
+        <image class="action-icon" src="/assets/icons/export.png" mode="aspectFit"></image>
+        <text>导出记录</text>
+      </view>
+      <view class="action-item danger" bindtap="onDeleteConversation">
+        <image class="action-icon" src="/assets/icons/delete.png" mode="aspectFit"></image>
+        <text>删除会话</text>
+      </view>
+      <view class="action-cancel" bindtap="onCloseActionSheet">
+        <text>取消</text>
+      </view>
+    </view>
+  </view>
+</view>

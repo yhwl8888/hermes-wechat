@@ -1,0 +1,146 @@
+.page {
+  min-height: 100vh;
+  background: #F9FAFB;
+}
+
+.profile-header {
+  padding: 48rpx 24rpx 32rpx;
+  background: linear-gradient(135deg, #4F46E5 0%, #818CF8 100%);
+}
+
+.avatar-section {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.avatar-text {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 8rpx;
+}
+
+.user-level {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 6rpx 16rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12rpx;
+  align-self: flex-start;
+}
+
+.content {
+  padding: 24rpx;
+}
+
+.settings-section {
+  margin-bottom: 32rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #6B7280;
+  margin-bottom: 16rpx;
+  padding-left: 8rpx;
+}
+
+.settings-card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 24rpx;
+  border-bottom: 2rpx solid #F3F4F6;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-left {
+  display: flex;
+  align-items: center;
+}
+
+.setting-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 16rpx;
+  opacity: 0.7;
+}
+
+.setting-label {
+  font-size: 28rpx;
+  color: #111827;
+}
+
+.setting-right {
+  display: flex;
+  align-items: center;
+}
+
+.setting-value {
+  font-size: 26rpx;
+  color: #9CA3AF;
+  margin-right: 8rpx;
+}
+
+.arrow-icon {
+  width: 32rpx;
+  height: 32rpx;
+  opacity: 0.4;
+}
+
+.switch-item .setting-left {
+  flex: 1;
+}
+
+.danger-zone {
+  margin-top: 48rpx;
+  padding: 24rpx;
+}
+
+.btn-logout {
+  width: 100%;
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  border: none;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.btn-logout::after {
+  border: none;
+}

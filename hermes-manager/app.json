@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/chat/chat",
+    "pages/models/models",
+    "pages/modelDetail/modelDetail",
+    "pages/skills/skills",
+    "pages/skillDetail/skillDetail",
+    "pages/tasks/tasks",
+    "pages/taskCreate/taskCreate",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4F46E5",
+    "navigationBarTitleText": "Hermes Manager",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#6B7280",
+    "selectedColor": "#4F46E5",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "对话",
+        "iconPath": "assets/icons/chat.png",
+        "selectedIconPath": "assets/icons/chat-active.png"
+      },
+      {
+        "pagePath": "pages/models/models",
+        "text": "模型",
+        "iconPath": "assets/icons/model.png",
+        "selectedIconPath": "assets/icons/model-active.png"
+      },
+      {
+        "pagePath": "pages/skills/skills",
+        "text": "技能",
+        "iconPath": "assets/icons/skill.png",
+        "selectedIconPath": "assets/icons/skill-active.png"
+      },
+      {
+        "pagePath": "pages/tasks/tasks",
+        "text": "任务",
+        "iconPath": "assets/icons/task.png",
+        "selectedIconPath": "assets/icons/task-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/icons/profile.png",
+        "selectedIconPath": "assets/icons/profile-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

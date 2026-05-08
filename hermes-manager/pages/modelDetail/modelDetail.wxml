@@ -1,0 +1,99 @@
+<view class="page">
+  <view class="header">
+    <view class="model-avatar-large">
+      <text class="avatar-text">{{model.name.charAt(0)}}</text>
+    </view>
+    <text class="model-name">{{model.name}}</text>
+    <text class="model-provider">{{model.provider}}</text>
+    <view class="status-badge {{model.status}}">
+      <view class="status-dot"></view>
+      <text>{{model.status === 'online' ? '在线' : '离线'}}</text>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="section">
+      <text class="section-title">基本信息</text>
+      <view class="info-card">
+        <view class="info-item">
+          <text class="info-label">版本</text>
+          <text class="info-value">v{{model.version}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">提供商</text>
+          <text class="info-value">{{model.provider}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">创建时间</text>
+          <text class="info-value">{{model.createdAt || '未知'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <text class="section-title">API配置</text>
+      <view class="config-card">
+        <view class="config-item">
+          <text class="config-label">API地址</text>
+          <textarea class="config-input endpoint" value="{{model.apiEndpoint}}" bindinput="onEndpointChange" placeholder="输入API地址" />
+        </view>
+        <view class="config-item">
+          <text class="config-label">API密钥</text>
+          <view class="api-key-container">
+            <input class="config-input {{showApiKey ? '' : 'masked'}}" value="{{model.apiKey}}" bindinput="onApiKeyChange" placeholder="输入API密钥" password="{{!showApiKey}}" />
+            <view class="toggle-visibility" bindtap="onToggleVisibility">
+              <image class="eye-icon" src="{{showApiKey ? '/assets/icons/eye-open.png' : '/assets/icons/eye-close.png'}}" mode="aspectFit"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <text class="section-title">默认参数</text>
+      <view class="params-card">
+        <view class="param-item">
+          <view class="param-header">
+            <text class="param-label">温度 (Temperature)</text>
+            <text class="param-value">{{model.defaultParams.temperature}}</text>
+          </view>
+          <slider class="param-slider" min="0" max="100" value="{{temperatureValue}}" bindchange="onTemperatureChange" />
+          <view class="param-desc">
+            <text>0.0</text>
+            <text>2.0</text>
+          </view>
+        </view>
+        <view class="param-item">
+          <view class="param-header">
+            <text class="param-label">最大Token数</text>
+            <text class="param-value">{{model.defaultParams.maxTokens}}</text>
+          </view>
+          <slider class="param-slider" min="100" max="8000" step="100" value="{{maxTokensValue}}" bindchange="onMaxTokensChange" />
+          <view class="param-desc">
+            <text>100</text>
+            <text>8000</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="actions">
+      <button class="btn-test" bindtap="onTestConnection">
+        <image class="btn-icon" src="/assets/icons/test.png" mode="aspectFit"></image>
+        <text>测试连接</text>
+      </button>
+      <button class="btn-save" bindtap="onSaveModel">
+        <image class="btn-icon" src="/assets/icons/save.png" mode="aspectFit"></image>
+        <text>保存配置</text>
+      </button>
+    </view>
+
+    <view class="danger-zone">
+      <text class="danger-title">危险操作</text>
+      <button class="btn-delete" bindtap="onDeleteModel">
+        <image class="btn-icon" src="/assets/icons/delete.png" mode="aspectFit"></image>
+        <text>删除模型</text>
+      </button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,103 @@
+<view class="page">
+  <view class="header">
+    <view class="skill-icon-large {{skill.category}}">
+      <image wx:if="{{skill.category === '工具'}}" src="/assets/icons/tool.png" mode="aspectFit"></image>
+      <image wx:elif="{{skill.category === '开发'}}" src="/assets/icons/code.png" mode="aspectFit"></image>
+      <image wx:elif="{{skill.category === '分析'}}" src="/assets/icons/chart.png" mode="aspectFit"></image>
+      <image wx:elif="{{skill.category === '创意'}}" src="/assets/icons/creative.png" mode="aspectFit"></image>
+    </view>
+    <text class="skill-name">{{skill.name}}</text>
+    <view class="skill-status">
+      <switch checked="{{skill.isEnabled}}" bindchange="onToggleEnabled" />
+      <text class="status-text">{{skill.isEnabled ? '已启用' : '已禁用'}}</text>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="section">
+      <text class="section-title">技能信息</text>
+      <view class="info-card">
+        <view class="info-row">
+          <text class="info-label">分类</text>
+          <text class="info-value category-tag {{skill.category}}">{{skill.category}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">版本</text>
+          <text class="info-value">v{{skill.version}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">使用次数</text>
+          <text class="info-value">{{skill.usageCount}} 次</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <text class="section-title">功能描述</text>
+      <view class="desc-card">
+        <text class="desc-text">{{skill.description}}</text>
+        <text class="desc-detail">此技能可以帮助您在Hermes Agent中执行特定任务，提供增强的AI能力。</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <text class="section-title">技能配置</text>
+      <view class="config-card">
+        <view class="config-item">
+          <text class="config-label">超时时间</text>
+          <view class="config-value">
+            <slider class="config-slider" min="5" max="60" value="{{config.timeout}}" bindchange="onTimeoutChange" />
+            <text class="value-text">{{config.timeout}}秒</text>
+          </view>
+        </view>
+        <view class="config-item">
+          <text class="config-label">重试次数</text>
+          <view class="config-value">
+            <slider class="config-slider" min="0" max="5" value="{{config.retryCount}}" bindchange="onRetryChange" />
+            <text class="value-text">{{config.retryCount}}次</text>
+          </view>
+        </view>
+        <view class="config-item">
+          <text class="config-label">日志级别</text>
+          <picker mode="selector" range="{{logLevels}}" range-key="label" bindchange="onLogLevelChange">
+            <view class="picker-value">
+              <text>{{selectedLogLevel}}</text>
+              <image class="arrow-icon" src="/assets/icons/arrow-right.png" mode="aspectFit"></image>
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <text class="section-title">使用统计</text>
+      <view class="stats-card">
+        <view class="stat-item">
+          <text class="stat-value">{{usageStats.today}}</text>
+          <text class="stat-label">今日使用</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{usageStats.week}}</text>
+          <text class="stat-label">本周使用</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{usageStats.month}}</text>
+          <text class="stat-label">本月使用</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="actions">
+      <button class="btn-save" bindtap="onSaveSkill">
+        <text>保存配置</text>
+      </button>
+    </view>
+
+    <view class="danger-zone">
+      <text class="danger-title">卸载技能</text>
+      <button class="btn-uninstall" bindtap="onUninstallSkill">
+        <text>卸载此技能</text>
+      </button>
+    </view>
+  </view>
+</view>

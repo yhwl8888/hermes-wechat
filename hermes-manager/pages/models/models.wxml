@@ -1,0 +1,137 @@
+<view class="page">
+  <view class="header">
+    <view class="header-title">
+      <text class="title-text">模型管理</text>
+      <text class="subtitle-text">配置和管理AI模型</text>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="stats-card">
+      <view class="stat-item">
+        <text class="stat-value">{{onlineCount}}</text>
+        <text class="stat-label">在线模型</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{totalCount}}</text>
+        <text class="stat-label">总模型数</text>
+      </view>
+    </view>
+
+    <view class="section-header">
+      <text class="section-title">模型列表</text>
+      <view class="add-btn" bindtap="onAddModel">
+        <image class="add-icon" src="/assets/icons/add.png" mode="aspectFit"></image>
+        <text>添加模型</text>
+      </view>
+    </view>
+
+    <view class="search-bar">
+      <image class="search-icon" src="/assets/icons/search.png" mode="aspectFit"></image>
+      <input class="search-input" placeholder="搜索模型..." bindinput="onSearchInput" value="{{searchKeyword}}" />
+    </view>
+
+    <view class="filter-tabs">
+      <view class="filter-tab {{filterType === 'all' ? 'active' : ''}}" bindtap="onFilterChange" data-type="all">
+        <text>全部</text>
+      </view>
+      <view class="filter-tab {{filterType === 'online' ? 'active' : ''}}" bindtap="onFilterChange" data-type="online">
+        <text>在线</text>
+      </view>
+      <view class="filter-tab {{filterType === 'offline' ? 'active' : ''}}" bindtap="onFilterChange" data-type="offline">
+        <text>离线</text>
+      </view>
+    </view>
+
+    <view class="model-list">
+      <block wx:for="{{filteredModels}}" wx:key="id">
+        <view class="model-card" bindtap="onModelTap" data-id="{{item.id}}">
+          <view class="model-header">
+            <view class="model-avatar">
+              <text class="avatar-text">{{item.name.charAt(0)}}</text>
+            </view>
+            <view class="model-info">
+              <text class="model-name">{{item.name}}</text>
+              <text class="model-provider">{{item.provider}}</text>
+            </view>
+            <view class="model-status {{item.status}}">
+              <view class="status-dot"></view>
+              <text>{{item.status === 'online' ? '在线' : '离线'}}</text>
+            </view>
+          </view>
+          <view class="model-body">
+            <view class="model-meta">
+              <view class="meta-item">
+                <text class="meta-label">版本</text>
+                <text class="meta-value">v{{item.version}}</text>
+              </view>
+              <view class="meta-item">
+                <text class="meta-label">默认温度</text>
+                <text class="meta-value">{{item.defaultParams.temperature}}</text>
+              </view>
+              <view class="meta-item">
+                <text class="meta-label">最大Token</text>
+                <text class="meta-value">{{item.defaultParams.maxTokens}}</text>
+              </view>
+            </view>
+            <view class="model-endpoint">
+              <text class="endpoint-label">API地址</text>
+              <text class="endpoint-value">{{item.apiEndpoint}}</text>
+            </view>
+          </view>
+          <view class="model-actions">
+            <view class="action-btn test-btn" bindtap="onTestConnection" data-id="{{item.id}}">
+              <text>测试连接</text>
+            </view>
+            <view class="action-btn config-btn" bindtap="onConfigModel" data-id="{{item.id}}">
+              <text>配置</text>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <view class="empty-state" wx:if="{{filteredModels.length === 0}}">
+        <image class="empty-icon" src="/assets/icons/empty-model.png" mode="aspectFit"></image>
+        <text class="empty-text">暂无模型</text>
+        <text class="empty-hint">点击上方按钮添加新模型</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="add-model-panel {{showAddPanel ? 'show' : ''}}" wx:if="{{showAddPanel}}">
+    <view class="panel-mask" bindtap="onCloseAddPanel"></view>
+    <view class="panel-content">
+      <view class="panel-header">
+        <text class="panel-title">添加模型</text>
+        <view class="close-btn" bindtap="onCloseAddPanel">×</view>
+      </view>
+      <view class="panel-body">
+        <view class="form-item">
+          <text class="form-label">模型名称</text>
+          <input class="form-input" placeholder="例如：GPT-4" bindinput="onNameInput" value="{{newModel.name}}" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">提供商</text>
+          <input class="form-input" placeholder="例如：OpenAI" bindinput="onProviderInput" value="{{newModel.provider}}" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">版本</text>
+          <input class="form-input" placeholder="例如：4.0" bindinput="onVersionInput" value="{{newModel.version}}" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">API地址</text>
+          <input class="form-input" placeholder="https://api.example.com" bindinput="onEndpointInput" value="{{newModel.apiEndpoint}}" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">API密钥</text>
+          <input class="form-input" password placeholder="sk-..." bindinput="onApiKeyInput" value="{{newModel.apiKey}}" />
+        </view>
+      </view>
+      <view class="panel-footer">
+        <button class="btn-cancel" bindtap="onCloseAddPanel">取消</button>
+        <button class="btn-confirm" bindtap="onConfirmAdd">确认添加</button>
+      </view>
+    </view>
+  </view>
+</view>

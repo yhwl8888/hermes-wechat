@@ -1,0 +1,110 @@
+<view class="page">
+  <view class="header">
+    <view class="header-title">
+      <text class="title-text">定时任务</text>
+      <text class="subtitle-text">管理自动化任务</text>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="stats-row">
+      <view class="stat-card">
+        <view class="stat-icon active">
+          <text class="stat-number">{{activeCount}}</text>
+        </view>
+        <view class="stat-info">
+          <text class="stat-label">运行中</text>
+        </view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-icon paused">
+          <text class="stat-number">{{pausedCount}}</text>
+        </view>
+        <view class="stat-info">
+          <text class="stat-label">已暂停</text>
+        </view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-icon total">
+          <text class="stat-number">{{totalCount}}</text>
+        </view>
+        <view class="stat-info">
+          <text class="stat-label">总任务数</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="filter-tabs">
+      <view class="filter-tab {{filterType === 'all' ? 'active' : ''}}" bindtap="onFilterChange" data-type="all">
+        <text>全部</text>
+      </view>
+      <view class="filter-tab {{filterType === 'active' ? 'active' : ''}}" bindtap="onFilterChange" data-type="active">
+        <text>运行中</text>
+      </view>
+      <view class="filter-tab {{filterType === 'paused' ? 'active' : ''}}" bindtap="onFilterChange" data-type="paused">
+        <text>已暂停</text>
+      </view>
+      <view class="filter-tab {{filterType === 'completed' ? 'active' : ''}}" bindtap="onFilterChange" data-type="completed">
+        <text>已完成</text>
+      </view>
+    </view>
+
+    <view class="task-list">
+      <block wx:for="{{filteredTasks}}" wx:key="id">
+        <view class="task-card">
+          <view class="task-header">
+            <view class="task-type-icon {{item.type}}">
+              <image wx:if="{{item.type === 'message'}}" src="/assets/icons/chat.png" mode="aspectFit"></image>
+              <image wx:elif="{{item.type === 'skill'}}" src="/assets/icons/skill.png" mode="aspectFit"></image>
+              <image wx:elif="{{item.type === 'report'}}" src="/assets/icons/report.png" mode="aspectFit"></image>
+            </view>
+            <view class="task-info">
+              <text class="task-name">{{item.name}}</text>
+              <view class="task-meta">
+                <text class="task-type">{{getTypeName(item.type)}}</text>
+                <text class="task-cron">{{item.cron}}</text>
+              </view>
+            </view>
+            <view class="task-status {{item.status}}">
+              <text>{{getStatusName(item.status)}}</text>
+            </view>
+          </view>
+          <view class="task-body">
+            <view class="task-time-info">
+              <view class="time-item">
+                <text class="time-label">下次执行</text>
+                <text class="time-value">{{item.nextRun || '未设置'}}</text>
+              </view>
+              <view class="time-item">
+                <text class="time-label">上次执行</text>
+                <text class="time-value">{{item.lastRun || '从未执行'}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="task-actions">
+            <view class="action-btn {{item.status === 'active' ? 'pause' : 'resume'}}" bindtap="onToggleTask" data-id="{{item.id}}">
+              <text>{{item.status === 'active' ? '暂停' : '恢复'}}</text>
+            </view>
+            <view class="action-btn history" bindtap="onViewHistory" data-id="{{item.id}}">
+              <text>历史</text>
+            </view>
+            <view class="action-btn delete" bindtap="onDeleteTask" data-id="{{item.id}}">
+              <text>删除</text>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <view class="empty-state" wx:if="{{filteredTasks.length === 0}}">
+        <image class="empty-icon" src="/assets/icons/empty-task.png" mode="aspectFit"></image>
+        <text class="empty-text">暂无任务</text>
+        <text class="empty-hint">点击下方按钮创建定时任务</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="create-button" bindtap="onCreateTask">
+    <image class="create-icon" src="/assets/icons/add.png" mode="aspectFit"></image>
+    <text class="create-text">创建任务</text>
+  </view>
+</view>

@@ -1,0 +1,277 @@
+.page {
+  min-height: 100vh;
+  background: #F9FAFB;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 24rpx 32rpx;
+  background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+}
+
+.model-avatar-large {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 30rpx;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.avatar-text {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.model-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 8rpx;
+}
+
+.model-provider {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 16rpx;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 24rpx;
+  color: #FFFFFF;
+}
+
+.status-dot {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background: #FFFFFF;
+}
+
+.content {
+  padding: 24rpx;
+}
+
+.section {
+  margin-bottom: 32rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16rpx;
+}
+
+.info-card, .config-card, .params-card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 16rpx 0;
+  border-bottom: 2rpx solid #F3F4F6;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 28rpx;
+  color: #6B7280;
+}
+
+.info-value {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #111827;
+}
+
+.config-item {
+  margin-bottom: 24rpx;
+}
+
+.config-item:last-child {
+  margin-bottom: 0;
+}
+
+.config-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 12rpx;
+}
+
+.config-input {
+  width: 100%;
+  background: #F3F4F6;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #111827;
+  box-sizing: border-box;
+}
+
+.config-input.endpoint {
+  min-height: 120rpx;
+}
+
+.config-input.masked {
+  letter-spacing: 4rpx;
+}
+
+.api-key-container {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.api-key-container .config-input {
+  flex: 1;
+}
+
+.toggle-visibility {
+  padding: 12rpx;
+}
+
+.eye-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.param-item {
+  margin-bottom: 32rpx;
+}
+
+.param-item:last-child {
+  margin-bottom: 0;
+}
+
+.param-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.param-label {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #111827;
+}
+
+.param-value {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #10B981;
+}
+
+.param-slider {
+  margin: 12rpx 0;
+}
+
+.param-desc {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22rpx;
+  color: #9CA3AF;
+}
+
+.actions {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+}
+
+.btn-test, .btn-save {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 24rpx;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.btn-test {
+  background: #FFFFFF;
+  color: #10B981;
+  border: 2rpx solid #10B981;
+}
+
+.btn-test::after {
+  border: none;
+}
+
+.btn-save {
+  background: linear-gradient(135deg, #10B981, #34D399);
+  color: #FFFFFF;
+}
+
+.btn-save::after {
+  border: none;
+}
+
+.btn-icon {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.btn-test .btn-icon {
+  filter: brightness(0) saturate(100%) invert(45%) sepia(64%) saturate(2498%) hue-rotate(120deg) brightness(94%) contrast(92%);
+}
+
+.btn-save .btn-icon, .btn-delete .btn-icon {
+  filter: brightness(0) invert(1);
+}
+
+.danger-zone {
+  padding-top: 24rpx;
+  border-top: 2rpx solid #E5E7EB;
+}
+
+.danger-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #EF4444;
+  margin-bottom: 16rpx;
+}
+
+.btn-delete {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 24rpx;
+  border-radius: 16rpx;
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.btn-delete::after {
+  border: none;
+}

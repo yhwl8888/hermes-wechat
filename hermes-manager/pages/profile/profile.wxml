@@ -1,0 +1,136 @@
+<view class="page">
+  <view class="profile-header">
+    <view class="avatar-section">
+      <view class="avatar">
+        <text class="avatar-text">U</text>
+      </view>
+      <view class="user-info">
+        <text class="username">Hermes用户</text>
+        <text class="user-level">专业版</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="settings-section">
+      <text class="section-title">通用设置</text>
+      <view class="settings-card">
+        <view class="setting-item" bindtap="onThemeChange">
+          <view class="setting-left">
+            <image class="setting-icon" src="/assets/icons/theme.png" mode="aspectFit"></image>
+            <text class="setting-label">主题模式</text>
+          </view>
+          <view class="setting-right">
+            <text class="setting-value">{{themeText}}</text>
+            <image class="arrow-icon" src="/assets/icons/arrow-right.png" mode="aspectFit"></image>
+          </view>
+        </view>
+        <view class="setting-item">
+          <view class="setting-left">
+            <image class="setting-icon" src="/assets/icons/language.png" mode="aspectFit"></image>
+            <text class="setting-label">语言</text>
+          </view>
+          <view class="setting-right">
+            <text class="setting-value">简体中文</text>
+            <image class="arrow-icon" src="/assets/icons/arrow-right.png" mode="aspectFit"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="settings-section">
+      <text class="section-title">通知设置</text>
+      <view class="settings-card">
+        <view class="setting-item switch-item">
+          <view class="setting-left">
+            <image class="setting-icon" src="/assets/icons/notification.png" mode="aspectFit"></image>
+            <text class="setting-label">消息推送</text>
+          </view>
+          <switch checked="{{notifications.message}}" bindchange="onNotificationChange" data-type="message" />
+        </view>
+        <view class="setting-item switch-item">
+          <view class="setting-left">
+            <image class="setting-icon" src="/assets/icons/bell.png" mode="aspectFit"></image>
+            <text class="setting-label">任务提醒</text>
+          </view>
+          <switch checked="{{notifications.task}}" bindchange="onNotificationChange" data-type="task" />
+        </view>
+        <view class="setting-item switch-item">
+          <view class="setting-left">
+            <image class="setting-icon" src="/assets/icons/sound.png" mode="aspectFit"></image>
+            <text class="setting-label">声音提示</text>
+          </view>
+          <switch checked="{{notifications.sound}}" bindchange="onNotificationChange" data-type="sound" />
+        </view>
+      </view>
+    </view>
+
+    <view class="settings-section">
+      <text class="section-title">数据管理</text>
+      <view class="settings-card">
+        <view class="setting-item" bindtap="onBackup">
+          <view class="setting-left">
+            <image class="setting-icon" src="/assets/icons/backup.png" mode="aspectFit"></image>
+            <text class="setting-label">备份数据</text>
+          </view>
+          <image class="arrow-icon" src="/assets/icons/arrow-right.png" mode="aspectFit"></image>
+        </view>
+        <view class="setting-item" bindtap="onRestore">
+          <view class="setting-left">
+            <image class="setting-icon" src="/assets/icons/restore.png" mode="aspectFit"></image>
+            <text class="setting-label">恢复数据</text>
+          </view>
+          <image class="arrow-icon" src="/assets/icons/arrow-right.png" mode="aspectFit"></image>
+        </view>
+        <view class="setting-item" bindtap="onClearCache">
+          <view class="setting-left">
+            <image class="setting-icon" src="/assets/icons/clear.png" mode="aspectFit"></image>
+            <text class="setting-label">清理缓存</text>
+          </view>
+          <view class="setting-right">
+            <text class="setting-value">{{cacheSize}}</text>
+            <image class="arrow-icon" src="/assets/icons/arrow-right.png" mode="aspectFit"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="settings-section">
+      <text class="section-title">关于</text>
+      <view class="settings-card">
+        <view class="setting-item">
+          <view class="setting-left">
+            <image class="setting-icon" src="/assets/icons/info.png" mode="aspectFit"></image>
+            <text class="setting-label">版本信息</text>
+          </view>
+          <view class="setting-right">
+            <text class="setting-value">v1.0.0</text>
+          </view>
+        </view>
+        <view class="setting-item" bindtap="onCheckUpdate">
+          <view class="setting-left">
+            <image class="setting-icon" src="/assets/icons/update.png" mode="aspectFit"></image>
+            <text class="setting-label">检查更新</text>
+          </view>
+          <view class="setting-right">
+            <text class="setting-value">已是最新版本</text>
+            <image class="arrow-icon" src="/assets/icons/arrow-right.png" mode="aspectFit"></image>
+          </view>
+        </view>
+        <view class="setting-item" bindtap="onViewHelp">
+          <view class="setting-left">
+            <image class="setting-icon" src="/assets/icons/help.png" mode="aspectFit"></image>
+            <text class="setting-label">帮助与反馈</text>
+          </view>
+          <image class="arrow-icon" src="/assets/icons/arrow-right.png" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="danger-zone">
+      <button class="btn-logout" bindtap="onLogout">
+        <text>退出登录</text>
+      </button>
+    </view>
+  </view>
+</view>
